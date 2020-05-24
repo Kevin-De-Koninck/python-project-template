@@ -3,6 +3,7 @@ Documentation
 
 Some handy texts
 """
+import sys
 from logzero import logger
 
 
@@ -18,4 +19,11 @@ class Template:
     @staticmethod
     def hello_world():
         print("Hello World!")
+
+    @staticmethod
+    def raise_systemerror():
+        logger.error("Raising a SystemError!")
+        logger.info("Logging info is not captured in pytest.")
+        print("Standard print output is captured in pytest.")
+        sys.exit(1)
 
