@@ -10,10 +10,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends --yes python3-v
 FROM builder AS tester
 COPY . /app
 WORKDIR /app
+#START_TESTS_MARKER
 COPY requirements_tests.txt /requirements_tests.txt
 RUN /venv/bin/pip install -r /requirements_tests.txt
-RUN touch /app/coverage.xml
-#START_TESTS_MARKER
 RUN echo "\033[0;34m\n*** RUNNING PYTEST NOW...\033[0m\n"
 RUN /venv/bin/pytest
 RUN echo "\033[0;34m\n*** RUNNING PYLINT NOW...\033[0m\n"
